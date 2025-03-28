@@ -44,18 +44,31 @@ public partial class ListaProduto : ContentPage
 
     private async void txt_search_TextChanged(object sender, TextChangedEventArgs e)
     {
-		try
-		{
-			string q = e.NewTextValue;
+        try
+        {
+            string q = e.NewTextValue;
+
+            if (string.IsNullOrEmpty(q))
+            {
+                txt_categoria.SelectedItem = null;
+            }
+
+            string r = txt_categoria.SelectedItem?.ToString();
 
             lst_produtos.IsRefreshing = true;
-
             lista.Clear();
 
-			List<Produto> tmp = await App.Db.Search(q);
-
-			tmp.ForEach(i => lista.Add(i));
-		}
+            if (string.IsNullOrEmpty(r))
+            {
+                List<Produto> tmp = await App.Db.Search(q);
+                tmp.ForEach(i => lista.Add(i));
+            }
+            else
+            {
+                List<Produto> tmp = await App.Db.SearchCategoria(q, r);
+                tmp.ForEach(i => lista.Add(i));
+            }
+        }
         catch (Exception ex)
         {
             await DisplayAlert("Ops", ex.Message, "OK");
