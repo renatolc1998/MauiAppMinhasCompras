@@ -28,9 +28,9 @@ public partial class ListaProduto : ContentPage
         {
             await DisplayAlert("Ops", ex.Message, "OK");
         }
-    }
+    }    
 
-    private void ToolbarItem_Clicked(object sender, EventArgs e)
+    private void ToolbarItem_Adicionar(object sender, EventArgs e)
     {
 		try 
 		{
@@ -40,6 +40,20 @@ public partial class ListaProduto : ContentPage
 		{
 			DisplayAlert("Ops", ex.Message, "OK");
 		}
+    }
+
+    private void ToolbarItem_Relatorio(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new Views.RelatorioProduto());
+    }
+
+    private void ToolbarItem_Somar(object sender, EventArgs e)
+    {
+        double soma = lista.Sum(i => i.Total);
+
+        string msg = $"O total é {soma:C}";
+
+        DisplayAlert("Total dos produtos", msg, "OK");
     }
 
     private async void txt_search_TextChanged(object sender, TextChangedEventArgs e)
@@ -77,18 +91,9 @@ public partial class ListaProduto : ContentPage
         {
             lst_produtos.IsRefreshing = false;
         }
-    }
+    }    
 
-    private void ToolbarItem_Clicked_1(object sender, EventArgs e)
-    {
-		double soma = lista.Sum(i => i.Total);
-
-		string msg = $"O total é {soma:C}";
-
-		DisplayAlert("Total dos produtos", msg, "OK");
-    }
-
-    private async void MenuItem_Clicked(object sender, EventArgs e)
+    private async void MenuItem_Remover(object sender, EventArgs e)
     {
 		try
 		{
@@ -144,4 +149,5 @@ public partial class ListaProduto : ContentPage
         }
 
     }
+    
 }

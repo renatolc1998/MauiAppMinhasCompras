@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppMinhasCompras.Views.RelatorioProduto"
+             Title="Relatorio">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Voltar" Order="Primary" Clicked="ToolbarItem_Voltar"/>
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout Padding="15">
+        <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, *, *, *, *">
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Total Gasto" HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="1" Grid.Column="0" Text="Alimentos" VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Label Grid.Row="1" Grid.Column="1" x:Name="txt_alimentos" Text="{Binding TotalAlimentos, StringFormat='{}{0:C}'}" VerticalOptions="Center" HorizontalOptions="End"/>
+            <Label Grid.Row="2" Grid.Column="0" Text="Bebidas" VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Label Grid.Row="2" Grid.Column="1" x:Name="txt_bebidas" Text="{Binding TotalBebidas, StringFormat='{}{0:C}'}" VerticalOptions="Center" HorizontalOptions="End"/>
+            <Label Grid.Row="3" Grid.Column="0" Text="Limpeza" VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Label Grid.Row="3" Grid.Column="1" x:Name="txt_limpeza" Text="{Binding TotalLimpeza, StringFormat='{}{0:C}'}" VerticalOptions="Center" HorizontalOptions="End"/>
+            <Label Grid.Row="4" Grid.Column="0" Text="Higiene Pessoal" VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Label Grid.Row="4" Grid.Column="1" x:Name="txt_higienepessoal" Text="{Binding TotalHigienePessoal, StringFormat='{}{0:C}'}" VerticalOptions="Center" HorizontalOptions="End"/>
+            <Label Grid.Row="5" Grid.Column="0" Text="Outros" VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Label Grid.Row="5" Grid.Column="1" x:Name="txt_outros" Text="{Binding TotalOutros, StringFormat='{}{0:C}'}" VerticalOptions="Center" HorizontalOptions="End"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>

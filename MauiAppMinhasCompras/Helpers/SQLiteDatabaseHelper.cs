@@ -47,5 +47,17 @@ namespace MauiAppMinhasCompras.Helpers
             string sql = "SELECT * FROM Produto WHERE descricao LIKE '%" + q + "%' AND categoria LIKE '%" + r + "%'";
             return _conn.QueryAsync<Produto>(sql);
         }
+
+        public Task<List<RelatorioCategoria>> GetTotalPorCategoria()
+        {
+            string sql = "SELECT Categoria, SUM(Quantidade * Preco) AS TotalGasto FROM Produto GROUP BY Categoria";
+            return _conn.QueryAsync<RelatorioCategoria>(sql);
+        }
     }
+    public class RelatorioCategoria
+    {
+        public string Categoria { get; set; }
+        public double TotalGasto { get; set; }
+    }
+
 }
